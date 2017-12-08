@@ -1,0 +1,53 @@
+<md-dialog flex="50">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>
+        <span class="md-title">Criar Nota</span>
+      </h2>
+      <span flex></span>
+      <md-button ng-click="cancelar()" class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-icon="material:close" aria-label="Close"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <form ng-submit="enviarNota()">
+      <md-card flex>
+        <md-card-title>
+          Nota
+        </md-card-title>
+        <md-card-content>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <label>Título:</label>
+              <input type="text" ng-model="nota.titulo"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+              <label>Descrição:</label>
+              <input type="text" ng-model="nota.descricao"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex>
+              <label>Categoria:</label>
+              <md-select ng-model="nota.categoria">
+                <md-option
+                        ng-value="categoria.codigo"
+                        ng-repeat="categoria in categorias">
+                        {{categoria.titulo}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-input-container class="md-block" flex>
+              <label>Conteúdo:</label>
+              <input type="text" ng-model="nota.conteudo"/>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-button class="md-raised" ng-click="cancelar()">Cancelar</md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit">Salvar</md-button>
+          </div>
+        </md-card-content>
+      </md-card>
+  </form>
+</md-dialog>

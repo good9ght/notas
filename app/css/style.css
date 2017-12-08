@@ -1,0 +1,47 @@
+body, html {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.conteudo-nota {
+  position: absolute;
+  float: left;
+  background-color: #ff1744;
+  bottom: 0rem;
+  left: 0.5rem;
+  /*width: 20rem;
+  height: 12rem;*/
+  width: 120%;
+  height: 120%;
+  margin-left:auto;
+  margin-right:auto;
+  transition: width 0.2s, height 0.2s;
+  border-radius: 2px;
+  padding: 5%;
+  z-index: 90;
+}
+
+.texto-conteudo {
+  transition: font-size 0.5s;
+}
+.titulo-conteudo {
+  transition: font-size 0.5s;
+}
+.conteudo {
+    position: relative;
+    padding: auto;
+    /*padding-left: 100%;*/
+    /*padding-top: 100999999;*/
+    /*background: blue;*/
+    /*z-index: 1;*/
+}
+
+.esconder-conteudo {
+  padding:0;
+  width: 0px;
+  height: 0px;
+  font-size: 0px !important;
+}
+.mostrar-botao {
+  z-index: 99 !important;
+}

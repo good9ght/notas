@@ -1,0 +1,39 @@
+<md-dialog flex="50">
+  <form name="formularioCadastro" ng-submit="enviardados()">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Cadastro</h2>
+      <span flex></span>
+      <md-button ng-click="cancelar()" class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-icon="material:close" aria-label="Close"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <md-card flex>
+        <md-card-title>
+          <!-- <span class="md-title">Cadastro</span> -->
+        </md-card-title>
+        <md-card-content layout="column">
+            <md-input-container class="md-block" flex-md-xs>
+              <label>Nome:</label>
+              <input type="text" ng-model="dados.nome" required/>
+            </md-input-container>
+            <md-input-container class="md-block" flex-md-xs>
+              <label>Email:</label>
+              <input type="email" ng-model="dados.email" required/>
+            </md-input-container>
+          <md-input-container class="md-block" flex>
+            <label>Senha:</label>
+            <input type="password" ng-model="dados.senha" required/>
+          </md-input-container>
+        </md-card-content>
+      </md-card>
+  <md-dialog-actions>
+    <md-button class="md-raised" ng-click="cancelar()">Cancelar</md-button>
+    <span flex></span>
+    <md-button class="md-raised md-primary" type="submit" ng-disabled="!formularioCadastro.$valid">Salvar</md-button>
+  </md-dialog-actions>
+  </md-dialog-content>
+</form>
+</md-dialog>

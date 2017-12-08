@@ -1,0 +1,53 @@
+
+<div class="conteudo">
+  <md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{nota.titulo}}
+        <span class="md-subhead">- por {{nota.autor}}</span>
+      </span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+      <p class="md-subhead">{{nota.descricao}}</p>
+      <p class="md-caption" style="color: #F44336">{{nota.categoria}}</p>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="start start">
+    <md-button class="md-fab md-mini md-primary ver-conteudo" ng-click="mudarIconeClose(nota.codigo)">
+      <md-icon ng-if="!mostrarIconeClose(nota.codigo)" md-svg-icon="material:launch" aria-label="Launch"></md-icon>
+      <md-icon ng-if="mostrarIconeClose(nota.codigo)" md-svg-icon="material:close" aria-label="Launch"></md-icon>
+    </md-button>
+    <md-button ng-click="mostrarFormularioNota($event, nota.codigo)"
+    class="md-fab md-mini md-primary">
+      <md-icon md-svg-icon="material:edit" aria-label="Edit"></md-icon>
+    </md-button>
+    <!-- por algum motivo o menu remove a margem do botão -->
+    <span flex="5"></span>
+    <md-menu>
+      <md-button ng-click="$mdMenu.open()" class="md-fab md-mini md-primary">
+        <md-icon md-svg-icon="material:delete_forever" aria-label="Delete"></md-icon>
+      </md-button>
+
+      <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
+        <md-menu-item>
+          <md-button ng-click="deletarNota(nota.codigo)">
+            Excluir Nota
+          </md-button>
+
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="$mdMenu.close()">
+            Cancelar
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+
+    </md-menu>
+
+  </md-card-actions>
+    <div class="conteudo-nota esconder-conteudo">
+      <span class="md-headline titulo-conteudo esconder-conteudo">{{nota.titulo}}</span>
+      <p class="md-subhead texto-conteudo esconder-conteudo">{{nota.conteudo}}</p>
+    </div>
+  </md-card>
+</div>

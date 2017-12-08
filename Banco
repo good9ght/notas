@@ -1,0 +1,35 @@
+CREATE DATABASE notas;
+USE notas;
+CREATE TABLE `usuarios` (
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(200),
+  `nome` varchar(150) NOT NULL,
+  `senha` varchar(100) NOT NULL,
+  PRIMARY KEY (`codigo`)
+);
+
+
+CREATE TABLE `notas` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(150) DEFAULT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `conteudo` varchar(500) DEFAULT NULL,
+  `autor` int DEFAULT NULL,
+  `categoria` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codigo`)
+);
+
+CREATE TABLE `categorias` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`codigo`)
+);
+
+insert into usuarios(email, nome, senha) VALUES("anvictor@outlook.com","Victor","123");
+insert into usuarios(email, nome, senha) VALUES("ti.juliano@fhcsl.com.br","Juliano","1234");
+insert into usuarios(email, nome, senha) VALUES("ti.kelvin@fhcsl.com.br","Kelvin","12345");
+
+insert into categorias(titulo) values("Sem Categoria");
+insert into categorias(titulo) values("Trabalho");
+insert into categorias(titulo) values("Escola");
+insert into categorias(titulo) values("Lembrar");

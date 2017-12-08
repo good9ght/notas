@@ -1,0 +1,25 @@
+<cabecalho></cabecalho>
+<form ng-submit="logar()">
+	<md-content>
+	  <md-card layout-align="center center">
+	    <md-card-title>
+	      <span ng-if="!nota.codigo" class="md-title">Entrar</span>
+	    </md-card-title>
+	    <md-card-content>
+	      <md-input-container class="md-block" flex-md-xs>
+	          <label>Email:</label>
+	          <input type="text" ng-model="dados.email"/>
+	        </md-input-container>
+	        <md-input-container class="md-block" flex-md-xs>
+	          <label>Senha:</label>
+	          <input type="password" ng-model="dados.senha"/>
+	        </md-input-container>
+	      <div layout="row">
+	        <md-button class="md-raised" ng-click="abrirCadastro($event)">Primeiro Acesso?</md-button>
+	        <span flex></span>
+	        <md-button class="md-raised md-primary" type="submit">Entrar</md-button>
+	      </div>
+	    </md-card-content>
+  		</md-card>
+	</md-content>
+</form>

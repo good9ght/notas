@@ -1,0 +1,12 @@
+<md-toolbar layout="row" layout-align="center center">
+  <h1 class="md-toolbar-tools">
+    <a ng-href="#!/">Notas</a>
+  </h1>
+  <span flex></span>
+  <div layout="row" ng-if="usuario">
+  	<h3 class="md-subhead">{{usuario.nome}}</h3>
+  	<md-button class="md-icon-button" ng-click="logout()" style="margin-top:7px">
+	   <md-icon md-svg-icon="material:exit_app" aria-label="Power"></md-icon>
+	  </md-button>
+  </div>
+</md-toolbar>

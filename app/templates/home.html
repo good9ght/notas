@@ -1,0 +1,35 @@
+<cabecalho></cabecalho>
+<md-button class="md-fab md-fab-bottom-right docs-scroll-fab md-button scrolling" ng-click="mostrarFormularioNota($event, null)" style="position:fixed">
+  <md-icon md-svg-icon="material:add" aria-label="Add"></md-icon>
+  <md-tooltip md-direction="top">Criar Nota</md-tooltip>
+</md-button>
+
+<md-content flex="100" style="overflow-y: hidden">
+  <div layout="row" >
+    <md-input-container class="md-block" flex-md-xs>
+      <label>Pesquisar</label>
+      <input type="text" ng-model="pesquisar"/>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex-md-xs>
+      <label>Todas</label>
+      <md-select ng-model="categoria">
+        <md-option ng-value="">
+                Todas
+        </md-option>
+        <md-option
+                ng-value="categoria.titulo"
+                ng-repeat="categoria in categorias">
+                {{categoria.titulo}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+
+  </div>
+  <div layout="row" layout-wrap flex>
+    <nota flex="20" ng-repeat="nota in notas
+      | filter: { titulo:pesquisar }
+      | filter: { categoria:categoria }">
+    </nota>
+  </div>
+</md-content>
