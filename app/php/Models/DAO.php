@@ -33,11 +33,8 @@ class DAO {
       $sql = $this->conexao->prepare(
         "INSERT INTO $tabela($colunas) values($valores);");
 
-      foreach ($dados as $key => $value) {
-        $sql->bindValue($key, $value);
-      }
+      $sql->execute($dados);
 
-      $sql->execute();
       $this->conexao->commit();
 
       $this->lastInsertId = $this->conexao->lastInsertId();
@@ -57,18 +54,12 @@ class DAO {
       foreach ($dados as $key => $value) {
         $colunas .= "$key=:$key, ";
       }
-
       $colunas = substr($colunas, 0, strlen($colunas)-2);
-
 
       $sql = $this->conexao->prepare(
         "UPDATE  $tabela SET $colunas $argumentos");
 
-      foreach ($dados as $key => $value) {
-        $sql->bindValue($key, $value);
-      }
-
-      $sql->execute();
+      $sql->execute($dados);
     }
     catch (Exception $ex) {
       echo "Erro ao inserir!";
@@ -79,7 +70,7 @@ class DAO {
 
   function buscar($tabela, $colunas = "*", $argumentos = "", $join = "") {
     $resultado = array();
-    
+
     try{
       $sql = $this->conexao->query("SELECT $colunas from $tabela $join $argumentos;");
 
@@ -105,7 +96,7 @@ class DAO {
       $sql = $this->conexao->prepare("DELETE FROM $tabela WHERE $coluna=:$coluna;");
       $sql->bindValue($coluna, $valor);
 
-      $sql->execute();
+      $sql->execute($where);
       $this->conexao = null;
     }
     catch (Exception $ex) {

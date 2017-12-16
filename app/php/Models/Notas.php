@@ -14,13 +14,13 @@ class Notas extends DAO {
   }
 
   function cadastrarNota($dados) {
-    parent::inserir("notas", $dados);
+    parent::inserir("notas", (array) $dados);
   }
 
   function atualizarNota($dados) {
     $tabela = "notas";
     $argumentos = "where codigo = $dados->codigo";
-    parent::atualizar($tabela, $dados, $argumentos);
+    parent::atualizar($tabela, (array) $dados, $argumentos);
   }
 
   function deletarNota($codigo) {

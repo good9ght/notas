@@ -11,7 +11,7 @@ class Usuarios extends DAO{
 	}
 
 	function cadastrarUsuario($dados) {
-    parent::inserir("usuarios", $dados);
+    parent::inserir("usuarios", (array) $dados);
   }
 
 	function buscarUsuarios() {
