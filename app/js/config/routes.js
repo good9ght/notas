@@ -1,4 +1,5 @@
-angular.module("Notas").config(function($routeProvider) {
+angular.module("Notas")
+.config(function($routeProvider) {
    $routeProvider
    .when("/login", {
        templateUrl : "app/templates/login.html",

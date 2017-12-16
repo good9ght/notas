@@ -1,6 +1,6 @@
 <?php
 
-  class Banco {
+  class DAO {
     // private $ultimo_cod;
     private $conexao = null;
 
@@ -118,78 +118,5 @@
         echo "Erro ao deletar!";
       }
     }
-
-    function buscarNotas($codigoUsuario) {
-      $tabela = "notas";
-      $colunas = "notas.codigo, notas.titulo, notas.conteudo, notas.descricao, "
-        ."usuarios.nome as autor, categorias.titulo as categoria";
-      $argumentos = "left join usuarios on notas.autor = usuarios.codigo "
-        ."left join categorias on notas.categoria = categorias.codigo "
-        ."WHERE autor = $codigoUsuario";
-
-      return $this->buscar($tabela, $colunas, $argumentos);
-    }
-
-    function buscarNota($codigo) {
-      $tabela = "notas";
-
-      $colunas = "notas.codigo, notas.titulo, notas.conteudo, notas.descricao, "
-        ."usuarios.nome as autor, categorias.titulo as categoria";
-
-      $argumentos = "left join usuarios on notas.autor = usuarios.codigo "
-        ."left join categorias on notas.categoria = categorias.codigo "
-        ."where notas.codigo={$codigo}";
-
-      return $this->buscar($tabela, $colunas, $argumentos);
-    }
-
-    function buscarNotaEditar($codigo) {
-      $tabela = "notas";
-
-      $colunas = "notas.codigo, notas.titulo, notas.conteudo, notas.descricao, "
-        ."usuarios.codigo as autor, categorias.codigo as categoria ";
-
-      $argumentos = "left join usuarios on notas.autor = usuarios.codigo "
-        ."left join categorias on notas.categoria = categorias.codigo "
-        ."where notas.codigo={$codigo}";
-
-      return $this->buscar($tabela, $colunas, $argumentos);
-    }
-
-    function buscarCategorias() {
-      $tabela = "categorias";
-      return $this->buscar($tabela);
-    }
-
-    function buscarUsuarios(){
-      $tabela = "usuarios";
-      return $this->buscar($tabela);
-    }
-    // function buscarUsuario($colunas = "*", $id = null){
-    //   $tabela = "usuarios";
-    //   $argumentos = $id ? "where id = '{$id}';" : ";";
-    //   $this->buscar($tabela, $colunas, $argumentos);
-    // }
-
-    function cadastrarNota($dados) {
-      $this->inserir("notas", $dados);
-    }
-
-    function cadastrarUsuario($dados) {
-      $this->inserir("usuarios", $dados);
-    }
-
-    function atualizarNota($dados){
-      $tabela = "notas";
-      $argumentos = "where codigo = $dados->codigo";
-      $this->atualizar($tabela, $dados, $argumentos);
-    }
-
-    function deletarNota($codigo) {
-      $tabela = "notas";
-      $where = array("coluna" => "codigo", "valor" => $codigo);
-      $this->deletar($tabela, $where);
-    }
-
   }
 ?>

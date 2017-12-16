@@ -11,6 +11,4 @@ angular.module("Notas")
         $mdDialog.hide();
     });
   }
-
-
 });

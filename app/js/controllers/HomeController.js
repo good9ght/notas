@@ -13,20 +13,16 @@ function($scope, NotasFactory, $mdToast, $mdDialog, $mdMenu, $rootScope) {
     else {
       $scope.iconesClose.push(icone);
     }
-    console.log($scope.iconesClose);
   }
-
 
   $scope.mostrarIconeClose = function(icone) {
     let mostrar = $scope.iconesClose.indexOf(icone) != -1;
-    console.log(mostrar);
     return mostrar;
   }
 
   $scope.buscarNotas = function() {
     NotasFactory.buscarNotas($rootScope.usuario.codigo)
     .then(function(result) {
-      // console.log(result.data);
       $scope.notas = result.data;
     });
   }
@@ -44,12 +40,12 @@ function($scope, NotasFactory, $mdToast, $mdDialog, $mdMenu, $rootScope) {
     .then(function(resposta) {
       $scope.buscarNotas();
       $mdToast.show(
-            $mdToast.simple()
-              .textContent("Salva!")
-              .position('top right')
-              .hideDelay(1500)
+          $mdToast.simple()
+            .textContent("Salva!")
+            .position('top right')
+            .hideDelay(1500)
           );
-    }, function() {});
+    }, false);
   };
 
   $scope.buscarCategorias = function() {
@@ -84,10 +80,7 @@ function($scope, NotasFactory, $mdToast, $mdDialog, $mdMenu, $rootScope) {
       fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
     })
     .then(function(answer) {
-      // $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      // $scope.status = 'You cancelled the dialog.';
-    });
+    }, false);
   };
 
   $scope.buscarNotas();

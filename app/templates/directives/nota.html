@@ -15,7 +15,7 @@
   <md-card-actions layout="row" layout-align="start start">
     <md-button class="md-fab md-mini md-primary ver-conteudo" ng-click="mudarIconeClose(nota.codigo)">
       <md-icon ng-if="!mostrarIconeClose(nota.codigo)" md-svg-icon="material:launch" aria-label="Launch"></md-icon>
-      <md-icon ng-if="mostrarIconeClose(nota.codigo)" md-svg-icon="material:close" aria-label="Launch"></md-icon>
+      <md-icon ng-if="mostrarIconeClose(nota.codigo)" md-svg-icon="material:remove" aria-label="Launch"></md-icon>
     </md-button>
     <md-button ng-click="mostrarFormularioNota($event, nota.codigo)"
     class="md-fab md-mini md-primary">

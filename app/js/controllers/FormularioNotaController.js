@@ -12,9 +12,9 @@ function($scope, NotasFactory, $rootScope, $mdDialog, codigo) {
   $scope.categorias = [];
   $scope.usuarios = [];
 
-  $scope.buscarNotaEditar = function() {
+  $scope.buscarNota = function() {
     if($scope.nota.codigo) {
-      NotasFactory.buscarNotaEditar($scope.nota.codigo)
+      NotasFactory.buscarNota($scope.nota.codigo)
       .then(function(result) {
         $scope.nota = result.data[0];
       });
@@ -49,5 +49,5 @@ function($scope, NotasFactory, $rootScope, $mdDialog, codigo) {
   }
 
   $scope.buscarCategorias();
-  $scope.buscarNotaEditar();
+  $scope.buscarNota();
 });

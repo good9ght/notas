@@ -1,4 +1,5 @@
-angular.module("Notas").controller('MainController',  [ "$scope", "$rootScope",function($scope, $rootScope, $location){
+angular.module("Notas")
+.controller('MainController', function($scope, $rootScope, $location){
 
     $scope.usuario = angular.copy($rootScope.usuario);
 
@@ -6,4 +7,4 @@ angular.module("Notas").controller('MainController',  [ "$scope", "$rootScope",f
         $rootScope.usuario = null;
         $location.path( "/login" );
     }
-}]);
+});
