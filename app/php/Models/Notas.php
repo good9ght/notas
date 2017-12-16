@@ -2,15 +2,15 @@
 
 class Notas extends DAO {
 
-  function buscarNotas($notas) {
+  function buscarNotas($dados) {
     $tabela = "notas";
     $colunas = "notas.codigo, notas.titulo, notas.conteudo, notas.descricao, "
       ."usuarios.nome as autor, categorias.titulo as categoria";
-    $argumentos = "left join usuarios on notas.autor = usuarios.codigo "
-      ."left join categorias on notas.categoria = categorias.codigo "
-      ."WHERE autor = $notas->autor";
+    $join = "left join usuarios on notas.autor = usuarios.codigo "
+      ."left join categorias on notas.categoria = categorias.codigo ";
+    $argumentos = "WHERE autor=$dados->autor";
 
-    return parent::buscar($tabela, $colunas, $argumentos);
+    return parent::buscar($tabela, $colunas, $argumentos, $join);
   }
 
   function cadastrarNota($dados) {
@@ -31,14 +31,12 @@ class Notas extends DAO {
 
   function buscarNota($codigo) {
     $tabela = "notas";
-
     $colunas = "notas.codigo, notas.titulo, notas.conteudo, notas.descricao, "
       ."usuarios.codigo as autor, categorias.codigo as categoria ";
+    $join = "left join usuarios on notas.autor = usuarios.codigo "
+      ."left join categorias on notas.categoria = categorias.codigo ";
+    $argumentos = "where notas.codigo={$codigo}";
 
-    $argumentos = "left join usuarios on notas.autor = usuarios.codigo "
-      ."left join categorias on notas.categoria = categorias.codigo "
-      ."where notas.codigo={$codigo}";
-
-    return parent::buscar($tabela, $colunas, $argumentos);
+    return parent::buscar($tabela, $colunas, $argumentos, $join);
   }
 }

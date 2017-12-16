@@ -15,12 +15,12 @@ switch ($op) {
 		echo json_encode($notas->buscarNotas($dados));
 	break;
 
-	case 'enviarNota':
-		echo $notas->cadastrarNota($dados);
-		break;
-
 	case 'buscarNota':
 		echo json_encode($notas->buscarNota($dados->codigo));
+		break;
+
+	case 'enviarNota':
+		echo $notas->cadastrarNota($dados);
 		break;
 
 	case 'atualizarNota':

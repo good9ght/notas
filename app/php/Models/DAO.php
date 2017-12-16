@@ -21,7 +21,7 @@ class DAO {
 
       foreach ($dados as $key => $value) {
         $colunas .= "$key, ";
-        $valores .= "?, ";
+        $valores .= ":$key, ";
       }
 
       $colunas = substr($colunas, 0, strlen($colunas)-2);
@@ -33,10 +33,8 @@ class DAO {
       $sql = $this->conexao->prepare(
         "INSERT INTO $tabela($colunas) values($valores);");
 
-      $posicao = 0;
       foreach ($dados as $key => $value) {
-        $posicao++;
-        $sql->bindValue($posicao, $value);
+        $sql->bindValue($key, $value);
       }
 
       $sql->execute();
@@ -57,7 +55,7 @@ class DAO {
       $colunas = "";
 
       foreach ($dados as $key => $value) {
-        $colunas .= "$key=?, ";
+        $colunas .= "$key=:$key, ";
       }
 
       $colunas = substr($colunas, 0, strlen($colunas)-2);
@@ -66,10 +64,8 @@ class DAO {
       $sql = $this->conexao->prepare(
         "UPDATE  $tabela SET $colunas $argumentos");
 
-      $posicao = 0;
       foreach ($dados as $key => $value) {
-        $posicao++;
-        $sql->bindValue($posicao, $value);
+        $sql->bindValue($key, $value);
       }
 
       $sql->execute();
@@ -81,22 +77,21 @@ class DAO {
   }
 
 
-  function buscar($tabela, $colunas = "*", $argumentos = "") {
+  function buscar($tabela, $colunas = "*", $argumentos = "", $join = "") {
     $resultado = array();
-
+    
     try{
-      $sql = $this->conexao->query("SELECT $colunas from $tabela $argumentos;");
+      $sql = $this->conexao->query("SELECT $colunas from $tabela $join $argumentos;");
 
       if(!$sql) {
         die("Error: ". print_r($this->conexao->errorInfo(),true) );
       }
-
       $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
     catch(Exception $erroSql) {
       echo "Erro ao Buscar! ".$erroSql;
     }
-    // Encerrando conexão
+    // // Encerrando conexão
     $this->conexao = null;
 
     return $resultado;
@@ -107,7 +102,8 @@ class DAO {
       $coluna = $where["coluna"];
       $valor = $where["valor"];
 
-      $sql = $this->conexao->prepare("DELETE FROM $tabela WHERE $coluna=$valor;");
+      $sql = $this->conexao->prepare("DELETE FROM $tabela WHERE $coluna=:$coluna;");
+      $sql->bindValue($coluna, $valor);
 
       $sql->execute();
       $this->conexao = null;
