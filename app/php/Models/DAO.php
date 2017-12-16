@@ -34,10 +34,8 @@ class DAO {
         "INSERT INTO $tabela($colunas) values($valores);");
 
       $posicao = 0;
-
       foreach ($dados as $key => $value) {
         $posicao++;
-
         $sql->bindValue($posicao, $value);
       }
 
@@ -75,19 +73,16 @@ class DAO {
       }
 
       $sql->execute();
-
-      $this->conexao = null;
-
-
     }
     catch (Exception $ex) {
       echo "Erro ao inserir!";
     }
+    $this->conexao = null;
   }
 
 
   function buscar($tabela, $colunas = "*", $argumentos = "") {
-    $array = array();
+    $resultado = array();
 
     try{
       $sql = $this->conexao->query("SELECT $colunas from $tabela $argumentos;");
@@ -96,14 +91,15 @@ class DAO {
         die("Error: ". print_r($this->conexao->errorInfo(),true) );
       }
 
-      $array = $sql->fetchAll(PDO::FETCH_ASSOC);
-      // Encerrando conexão
-      $this->conexao = null;
+      $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
     catch(Exception $erroSql) {
       echo "Erro ao Buscar! ".$erroSql;
     }
-    return $array;
+    // Encerrando conexão
+    $this->conexao = null;
+
+    return $resultado;
   }
 
   function deletar($tabela, $where) {
