@@ -46,13 +46,11 @@ class DAO {
 
       $this->lastInsertId = $this->conexao->lastInsertId();
 
-      $this->conexao = null;
-
-
     }
-    catch (Exception $ex) {
-      echo "Erro ao inserir!";
+    catch (PDOException $e) {
+      echo "Erro ao inserir! ".$e->getMessage();
     }
+    $this->conexao = null;
   }
 
 
