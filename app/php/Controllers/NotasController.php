@@ -12,6 +12,8 @@ $categorias = new Categorias();
 
 switch ($op) {
 	case 'buscarNotas':
+		$dados = new stdClass();
+   	$dados->autor = $_GET["codigo"];
 		echo json_encode($notas->buscarNotas($dados));
 	break;
 
@@ -28,7 +30,7 @@ switch ($op) {
 		break;
 
 	case 'deletarNota':
-		echo $notas->deletarNota($dados);
+		echo $notas->deletarNota($_GET["codigo"]);
 		break;
 
 	case 'buscarCategorias':

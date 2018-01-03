@@ -31,7 +31,7 @@ class DAO {
       $this->conexao->beginTransaction();
 
       $sql = $this->conexao->prepare(
-        "INSERT INTO $tabela($colunas) values($valores);");
+        "INSERT INTO $tabela($colunas) values($valores)");
 
       $sql->execute($dados);
 
@@ -72,7 +72,7 @@ class DAO {
     $resultado = array();
 
     try{
-      $sql = $this->conexao->query("SELECT $colunas from $tabela $join $argumentos;");
+      $sql = $this->conexao->query("SELECT $colunas from $tabela $join $argumentos");
 
       if(!$sql) {
         die("Error: ". print_r($this->conexao->errorInfo(),true) );
@@ -93,10 +93,10 @@ class DAO {
       $coluna = $where["coluna"];
       $valor = $where["valor"];
 
-      $sql = $this->conexao->prepare("DELETE FROM $tabela WHERE $coluna=:$coluna;");
+      $sql = $this->conexao->prepare("DELETE FROM $tabela WHERE $coluna=:$coluna");
       $sql->bindValue($coluna, $valor);
 
-      $sql->execute($where);
+      $sql->execute();
       $this->conexao = null;
     }
     catch (Exception $ex) {

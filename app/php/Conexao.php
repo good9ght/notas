@@ -3,7 +3,7 @@
   class Conexao extends PDO {
     const DSN = "mysql:dbname=notas;host:127.0.0.1"; // Data Name Source
     const USUARIO = "root";
-    const SENHA = "root";
+    const SENHA = "";
 
     private static $instancia = null;
 
