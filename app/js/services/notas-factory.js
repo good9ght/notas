@@ -17,6 +17,14 @@ angular.module("Notas")
         headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
       });
     },
+    atualizarNota: function(nota) {
+      return $http({
+        method: "POST",
+        url: "app/php/Controllers/NotasController.php?op=atualizarNota",
+        data: nota,
+        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+      });
+    },
     buscarUsuarios: function() {
       return $http.get("app/php/Controllers/UsuariosController.php",
        { params: { op:"buscarUsuarios" }});
@@ -40,14 +48,6 @@ angular.module("Notas")
     buscarCategorias: function() {
       return $http.get("app/php/Controllers/NotasController.php",
        { params: { op:"buscarCategorias" }});
-    },
-    atualizarNota: function(nota) {
-      return $http({
-        method: "POST",
-        url: "app/php/Controllers/NotasController.php?op=atualizarNota",
-        data: nota,
-        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-      });
     },
     deletarNota: function(codigoNota) {
       return $http.delete("app/php/Controllers/NotasController.php",
